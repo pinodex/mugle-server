@@ -1,24 +1,23 @@
 'use strict';
 
+const path = require('path');
+const moduleAlias = require('module-alias');
+
 require('dotenv').config();
 
-const Hapi = require('@hapi/hapi');
-const Nes = require('@hapi/nes');
+moduleAlias.addAliases({
+  '@root': __dirname,
+  '@config': path.join(__dirname, 'config'),
+  '@controllers': path.join(__dirname, 'app', 'controllers'),
+  '@routes': path.join(__dirname, 'app', 'routes'),
+  '@helpers': path.join(__dirname, 'app', 'helpers'),
+});
 
-const { port } = require('./config/app');
-const server = Hapi.server({ port });
-
-const init = async () => {
-  await server.register(Nes);
-
-  await server.start();
-
-  console.log('Server running on %s', server.info.uri);
-};
+const server = require('./server');
 
 process.on('unhandledRejection', (err) => {
   console.log(err);
   process.exit(1);
 });
 
-init();
+server.start();

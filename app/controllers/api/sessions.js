@@ -33,6 +33,12 @@ exports.get = {
   async handler(request) {
     const { id } = request.params;
 
+    const exists = await sessionService.exists(id);
+
+    if (!exists) {
+      return Boom.notFound('Session not found');
+    }
+
     const peers = await sessionService.get(id);
 
     return { id, peers };

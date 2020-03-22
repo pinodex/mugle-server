@@ -1,5 +1,7 @@
 const Redis = require('ioredis');
-const { host, port, password, db, tls } = require('@config/redis');
+const {
+  host, port, password, db, tls,
+} = require('@config/redis');
 
 const proto = tls ? 'rediss' : 'redis';
 

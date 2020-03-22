@@ -5,12 +5,10 @@
  * @param  {Array} routes Route list
  * @return {Array}
  */
-module.exports = (prefix, routes) => {
-  return routes.map((route) => {
-    const newRoute = { ...route };
+module.exports = (prefix, routes) => routes.map((route) => {
+  const newRoute = { ...route };
 
-    newRoute.path = ('/' + prefix + newRoute.path).replace(/\/+$/, '');
+  newRoute.path = (`/${prefix}${newRoute.path}`).replace(/\/+$/, '');
 
-    return newRoute;
-  })
-}
+  return newRoute;
+});

@@ -1,11 +1,9 @@
 const Boom = require('@hapi/boom');
 
-const prepareDetails = (details) => details.map((detail) => {
-  return {
-    field: detail.path.join('.'),
-    message: detail.message
-  }
-});
+const prepareDetails = (details) => details.map((detail) => ({
+  field: detail.path.join('.'),
+  message: detail.message,
+}));
 
 /**
  * Validation fail action handler

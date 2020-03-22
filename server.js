@@ -12,18 +12,18 @@ const server = Hapi.server({
   port,
 
   router: {
-    stripTrailingSlash: true
+    stripTrailingSlash: true,
   },
 
   routes: {
     validate: {
       options: {
-        abortEarly: false
+        abortEarly: false,
       },
 
-      failAction: validateFailAction
-    }
-  }
+      failAction: validateFailAction,
+    },
+  },
 });
 
 server.route(routes);
@@ -33,13 +33,13 @@ exports.start = async () => {
     plugin: devErrors,
 
     options: {
-      showErrors: env !== 'production'
-    }
+      showErrors: env !== 'production',
+    },
   });
 
   await server.register(Nes);
 
   await server.start();
 
-  console.log('Server running on %s', server.info.uri);
+  process.stdout.write(`Server running on ${server.info.uri}\n`);
 };

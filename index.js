@@ -1,5 +1,3 @@
-'use strict';
-
 const path = require('path');
 const moduleAlias = require('module-alias');
 
@@ -17,7 +15,7 @@ moduleAlias.addAliases({
 const server = require('./server');
 
 process.on('unhandledRejection', (err) => {
-  console.log(err);
+  process.stderr.write(`${err}\n`);
   process.exit(1);
 });
 

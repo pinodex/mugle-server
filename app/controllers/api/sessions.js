@@ -11,7 +11,7 @@ const sessionSchema = Joi.object({
     .string()
     .min(8)
     .max(16)
-    .required()
+    .required(),
 });
 
 /**
@@ -25,9 +25,9 @@ exports.get = {
         id: Joi
           .string()
           .guid()
-          .required()
-      })
-    }
+          .required(),
+      }),
+    },
   },
 
   async handler(request) {
@@ -42,8 +42,8 @@ exports.get = {
     const peers = await sessionService.get(id);
 
     return { id, peers };
-  }
-}
+  },
+};
 
 /**
  * Create session
@@ -52,8 +52,8 @@ exports.get = {
 exports.create = {
   options: {
     validate: {
-      payload: sessionSchema
-    }
+      payload: sessionSchema,
+    },
   },
 
   async handler(request) {
@@ -62,9 +62,9 @@ exports.create = {
     const id = await sessionService.addPeer(peerId);
     const peers = await sessionService.get(id);
 
-    return { id, peers }
-  }
-}
+    return { id, peers };
+  },
+};
 
 /**
  * Add peer to session
@@ -77,11 +77,11 @@ exports.addPeer = {
         id: Joi
           .string()
           .guid()
-          .required()
+          .required(),
       }),
 
-      payload: sessionSchema
-    }
+      payload: sessionSchema,
+    },
   },
 
   async handler(request) {
@@ -98,6 +98,6 @@ exports.addPeer = {
 
     const peers = await sessionService.get(id);
 
-    return { id, peers }
-  }
-}
+    return { id, peers };
+  },
+};

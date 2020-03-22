@@ -6,11 +6,9 @@
  * @param  {Object} action Route action
  * @return {Object}
  */
-module.exports = (method, path, { options, handler }) => {
-  return {
-    method,
-    path,
-    options,
-    handler,
-  }
-}
+module.exports = (method, path, { options, handler }) => ({
+  method,
+  path,
+  options,
+  handler,
+});

@@ -19,7 +19,7 @@ exports.get = async (id) => {
   const peerIds = await redis.smembers(id);
 
   return peerIds;
-}
+};
 
 /**
  * Check if session ID exists
@@ -31,7 +31,7 @@ exports.exists = async (id) => {
   const response = await redis.exists(id);
 
   return response === 1;
-}
+};
 
 /**
  * Add new peer to session
@@ -46,4 +46,4 @@ exports.addPeer = async (peerId, sessionId = null) => {
   await redis.sadd(id, String(peerId));
 
   return id;
-}
+};

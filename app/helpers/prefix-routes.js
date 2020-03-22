@@ -5,7 +5,7 @@
  * @param  {Array} routes Route list
  * @return {Array}
  */
-function prefixRoutes(prefix, routes) {
+module.exports = (prefix, routes) => {
   return routes.map((route) => {
     const newRoute = { ...route };
 
@@ -14,5 +14,3 @@ function prefixRoutes(prefix, routes) {
     return newRoute;
   })
 }
-
-module.exports = prefixRoutes;

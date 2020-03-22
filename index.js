@@ -10,6 +10,7 @@ moduleAlias.addAliases({
   '@config': path.join(__dirname, 'config'),
   '@controllers': path.join(__dirname, 'app', 'controllers'),
   '@routes': path.join(__dirname, 'app', 'routes'),
+  '@services': path.join(__dirname, 'app', 'services'),
   '@helpers': path.join(__dirname, 'app', 'helpers'),
 });
 

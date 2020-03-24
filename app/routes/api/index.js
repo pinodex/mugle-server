@@ -1,6 +1,6 @@
 const prefixRoutes = require('@helpers/prefix-routes');
-const sessions = require('./sessions');
+const peers = require('./peers');
 
 module.exports = [
-  ...prefixRoutes('sessions', sessions),
+  ...prefixRoutes('peers', peers),
 ];

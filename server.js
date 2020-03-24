@@ -4,6 +4,7 @@ const Nes = require('@hapi/nes');
 const devErrors = require('hapi-dev-errors');
 
 const { env, port } = require('@config/app');
+const { connect: mongooseConnect } = require('@services/mongoose');
 const routes = require('@routes');
 
 const validateFailAction = require('@helpers/validate-fail-action');
@@ -16,6 +17,8 @@ const server = Hapi.server({
   },
 
   routes: {
+    cors: true,
+
     validate: {
       options: {
         abortEarly: false,
@@ -29,6 +32,8 @@ const server = Hapi.server({
 server.route(routes);
 
 exports.start = async () => {
+  mongooseConnect();
+
   await server.register({
     plugin: devErrors,
 

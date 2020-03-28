@@ -26,7 +26,7 @@ exports.get = {
     },
   },
 
-  async handler(request, h) {
+  async handler(request) {
     const { id } = request.params;
 
     try {
@@ -83,7 +83,7 @@ exports.refresh = {
       }
 
       if (error instanceof PeerExpired) {
-        return Boom.notAcceptable(error)
+        return Boom.notAcceptable(error);
       }
 
       throw error;

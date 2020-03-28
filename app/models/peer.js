@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
-const hidden = require('mongoose-hidden')()
+const hidden = require('mongoose-hidden')();
+
 const PEER_LIFETIME_SECONDS = 60;
 
 const definition = {

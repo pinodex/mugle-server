@@ -12,7 +12,7 @@ exports.init = () => {
   });
 
   return this;
-}
+};
 
 exports.log = (message) => instance.log(message);
 

@@ -1,5 +1,21 @@
 const Peer = require('@models/peer');
-const { PeerNotFound } = require('./errors');
+const { PeerNotFound, PeerExpired } = require('./errors');
+
+/**
+ * Get peer
+ *
+ * @param  {String} id Peer ID
+ * @return {Peer}
+ */
+exports.get = async (id) => {
+  const peer = await Peer.findById(id);
+
+  if (!peer) {
+    throw new PeerNotFound();
+  }
+
+  return peer;
+};
 
 /**
  * Create Peer
@@ -24,6 +40,10 @@ exports.refresh = async (id) => {
 
   if (!peer) {
     throw new PeerNotFound();
+  }
+
+  if (peer.isExpired) {
+    throw new PeerExpired();
   }
 
   peer.lastRefresh = new Date();

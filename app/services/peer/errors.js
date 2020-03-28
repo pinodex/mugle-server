@@ -4,6 +4,13 @@ class PeerNotFound extends Error {
   }
 }
 
+class PeerExpired extends Error {
+  constructor() {
+    super('Peer expired.');
+  }
+}
+
 module.exports = {
   PeerNotFound,
+  PeerExpired,
 };

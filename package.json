@@ -20,7 +20,8 @@
     "hapi-dev-errors": "^4.0.0",
     "joi-objectid": "^3.0.1",
     "module-alias": "^2.2.2",
-    "mongoose": "^5.9.6"
+    "mongoose": "^5.9.6",
+    "mongoose-hidden": "^1.8.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

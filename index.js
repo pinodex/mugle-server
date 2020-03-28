@@ -1,4 +1,3 @@
-const cron = require('@services/cron');
 const bootstrap = require('./bootstrap');
 const server = require('./server');
 
@@ -8,7 +7,5 @@ process.on('unhandledRejection', (err) => {
 });
 
 bootstrap().then(() => {
-  cron.run();
-
   server.start();
 });

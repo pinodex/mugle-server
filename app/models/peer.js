@@ -5,6 +5,11 @@ const PEER_LIFETIME_SECONDS = 60;
 
 const definition = {
   lastRefresh: Date,
+
+  isOccupied: {
+    type: Boolean,
+    default: () => false,
+  },
 };
 
 const options = {

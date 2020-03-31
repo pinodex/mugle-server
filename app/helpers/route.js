@@ -8,7 +8,7 @@ const Boom = require('@hapi/boom');
  * @param  {Object} action Route action
  * @return {Object}
  */
-module.exports = function route(method, path, { options, handler }) {
+module.exports = (method, path, { options, handler }) => {
   const handlerFn = handler || function error() {
     return Boom.notImplemented();
   };

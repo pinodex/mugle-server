@@ -1,0 +1,1 @@
+exports.PEER_LIFETIME_SECONDS = 5000;

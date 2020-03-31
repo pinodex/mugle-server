@@ -12,6 +12,7 @@ moduleAlias.addAliases({
   '@models': path.join(__dirname, 'app', 'models'),
   '@routes': path.join(__dirname, 'app', 'routes'),
   '@services': path.join(__dirname, 'app', 'services'),
+  '@tasks': path.join(__dirname, 'app', 'tasks'),
 });
 
 const { connect: mongooseConnect } = require('@services/mongoose');

@@ -1,15 +1,20 @@
 const { Schema, model } = require('mongoose');
 const hidden = require('mongoose-hidden')();
 
-const PEER_LIFETIME_SECONDS = 60;
+const { PEER_LIFETIME_SECONDS } = require('@models/constants');
 
 const definition = {
-  lastRefresh: Date,
+  socketId: {
+    type: String,
+    index: true,
+  },
 
   isOccupied: {
     type: Boolean,
     default: () => false,
   },
+
+  lastRefresh: Date,
 };
 
 const options = {
@@ -30,6 +35,11 @@ class Peer {
 }
 
 const schema = new Schema(definition, options);
+
+schema.index({
+  isOccupied: 1,
+  lastRefresh: -1,
+});
 
 schema.loadClass(Peer);
 schema.plugin(hidden);

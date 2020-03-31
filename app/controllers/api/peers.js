@@ -8,7 +8,7 @@ const Boom = require('@hapi/boom');
 Joi.objectId = require('joi-objectid')(Joi);
 
 const peerService = require('@services/peer');
-const { PeerNotFound, PeerExpired } = require('@services/peer/errors');
+const { PeerNotFound } = require('@services/peer/errors');
 
 /**
  * Get peer
@@ -40,55 +40,5 @@ exports.get = {
 
       throw error;
     }
-  },
-};
-
-/**
- * Create peer
- * @type {Object}
- */
-exports.create = {
-  async handler() {
-    const id = await peerService.create();
-
-    return {
-      id,
-    };
-  },
-};
-
-/**
- * Refresh peer
- * @type {Object}
- */
-exports.refresh = {
-  options: {
-    validate: {
-      params: Joi.object({
-        id: Joi
-          .objectId()
-          .required(),
-      }),
-    },
-  },
-
-  async handler(request, h) {
-    const { id } = request.params;
-
-    try {
-      await peerService.refresh(id);
-    } catch (error) {
-      if (error instanceof PeerNotFound) {
-        return Boom.notFound(error);
-      }
-
-      if (error instanceof PeerExpired) {
-        return Boom.notAcceptable(error);
-      }
-
-      throw error;
-    }
-
-    return h.response(null).code(204);
   },
 };

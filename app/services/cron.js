@@ -1,7 +1,8 @@
-// const cron = require('node-cron');
+const cron = require('node-cron');
+const findMatches = require('@tasks/find-matches');
 
-exports.run = () => {
-  // cron.schedule('*/5 * * * * *', () => {
-  //   console.log('hello');
-  // });
+exports.run = (server) => {
+  cron.schedule('*/3 * * * * *', () => {
+    findMatches(server);
+  });
 };

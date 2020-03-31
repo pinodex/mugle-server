@@ -11,6 +11,7 @@ const url = username && password
 exports.connect = () => mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
 exports.mongoose = mongoose;

@@ -9,6 +9,11 @@ const definition = {
     index: true,
   },
 
+  isReady: {
+    type: Boolean,
+    default: () => false,
+  },
+
   isOccupied: {
     type: Boolean,
     default: () => false,
@@ -37,8 +42,9 @@ class Peer {
 const schema = new Schema(definition, options);
 
 schema.index({
+  isReady: 1,
   isOccupied: 1,
-  lastRefresh: -1,
+  lastRefresh: 1,
 });
 
 schema.loadClass(Peer);

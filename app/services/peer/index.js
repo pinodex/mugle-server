@@ -76,6 +76,27 @@ exports.refreshBySocketId = async (socketId) => {
 };
 
 /**
+ * Set Peer as ready by socket ID
+ *
+ * @param  {String} socketId Socket ID
+ */
+exports.setAsReadyBySocketId = async (socketId) => {
+  const peer = await Peer.findOne({ socketId }).exec();
+
+  if (!peer) {
+    throw new PeerNotFound();
+  }
+
+  if (peer.isExpired) {
+    throw new PeerExpired();
+  }
+
+  peer.isReady = true;
+
+  await peer.save();
+};
+
+/**
  * Remove Peer by socket ID
  *
  * @param  {String} socketId Socket ID
@@ -104,15 +125,16 @@ exports.occupy = async (...peerIds) => {
 };
 
 /**
- * Find vacant Peers
+ * Find Peers that is vacant and ready
  *
  * @return {Peer}
  */
-exports.findVacants = async () => {
+exports.findForPairing = async () => {
   const lifetimeThreshold = new Date(new Date() - PEER_LIFETIME_SECONDS);
 
   const peers = await Peer.find({
     isOccupied: false,
+    isReady: true,
 
     lastRefresh: {
       $gt: lifetimeThreshold,

@@ -64,19 +64,18 @@ const pairMatches = async (server, matches) => {
     }
 
     firstSocket.publish('/ws/peer/match', secondPeer._id);
-    secondSocket.publish('/ws/peer/match', firstPeer._id);
 
     peerService.occupy(firstPeer._id, secondPeer._id);
   });
 };
 
 module.exports = async (server) => {
-  let peers = await peerService.findVacants();
+  let peers = await peerService.findForPairing();
 
   const matches = [];
 
   if (peers.length !== previousPeersLength) {
-    logger.info(`Found ${peers.length} vacant peers`);
+    logger.info(`Found ${peers.length} peers for pairing`);
   }
 
   previousPeersLength = peers.length;

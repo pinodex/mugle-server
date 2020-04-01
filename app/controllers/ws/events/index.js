@@ -1,8 +1,10 @@
 const peerService = require('@services/peer');
 const onPresenceHandler = require('@controllers/ws/events/on-presence');
+const onReadyHandler = require('@controllers/ws/events/on-ready');
 
 const messageEventMap = {
   presence: onPresenceHandler,
+  ready: onReadyHandler,
 };
 
 /**

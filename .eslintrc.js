@@ -18,5 +18,6 @@ module.exports = {
     "import/no-unresolved": "off",
     "no-underscore-dangle": "off",
     "max-classes-per-file": "off",
+    "import/order": "off",
   },
 };

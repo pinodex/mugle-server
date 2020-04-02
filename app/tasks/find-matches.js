@@ -52,13 +52,13 @@ const pairMatches = async (server, matches) => {
     const secondSocket = socketIndex[secondPeer.socketId] || null;
 
     if (firstSocket === null) {
-      logger.info(`Cannot find socket for ${firstPeer.socketId}`);
+      logger.error(`Cannot find socket for ${firstPeer.socketId}`);
 
       return;
     }
 
     if (secondSocket === null) {
-      logger.info(`Cannot find socket for ${secondPeer.socketId}`);
+      logger.error(`Cannot find socket for ${secondPeer.socketId}`);
 
       return;
     }

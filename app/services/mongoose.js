@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
 
-const {
-  host, port, username, password, db,
-} = require('@config/mongodb');
+const { uri, host, port, username, password, db } = require('@config/mongodb');
 
-const url = username && password
-  ? `mongodb://${username}:${password}@${host}:${port}/${db}`
-  : `mongodb://${host}:${port}/${db}`;
+let connectionUri = uri;
 
-exports.connect = () => mongoose.connect(url, {
+if (!connectionUri) {
+  connectionUri = username && password
+    ? `mongodb://${username}:${password}@${host}:${port}/${db}`
+    : `mongodb://${host}:${port}/${db}`;
+}
+
+exports.connect = () => mongoose.connect(connectionUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

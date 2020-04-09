@@ -1,7 +1,8 @@
 module.exports = {
-  host: process.env.MONGO_HOST,
-  port: process.env.MONGO_PORT,
-  username: process.env.MONGO_USER || null,
-  password: process.env.MONGO_PASS || null,
-  db: process.env.MONGO_DB,
+  uri: process.env.MONGODB_URI,
+  host: process.env.MONGODB_HOST,
+  port: process.env.MONGODB_PORT,
+  username: process.env.MONGODB_USER || null,
+  password: process.env.MONGODB_PASS || null,
+  db: process.env.MONGODB_DB,
 };

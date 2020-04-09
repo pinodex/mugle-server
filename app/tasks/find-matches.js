@@ -64,8 +64,9 @@ const pairMatches = async (server, matches) => {
     }
 
     firstSocket.publish('/ws/peer/match', secondPeer._id);
+    secondSocket.publish('/ws/peer/match', firstPeer._id);
 
-    peerService.occupy(firstPeer._id, secondPeer._id);
+    peerService.occupy(firstPeer, secondPeer);
   });
 };
 

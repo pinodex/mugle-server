@@ -108,9 +108,11 @@ exports.deleteBySocketId = async (socketId) => {
 /**
  * Set peers occupied status to true
  *
- * @param  {...String} peerIds Peer IDs
+ * @param  {...Peer} peer List of Peers
  */
-exports.occupy = async (...peerIds) => {
+exports.occupy = async (...peers) => {
+  const peerIds = peers.map((peer) => peer._id);
+
   const query = {
     _id: {
       $in: peerIds,

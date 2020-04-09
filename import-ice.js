@@ -14,13 +14,16 @@ const schema = Joi.array().items(Joi.object({
     .required(),
 
   maxRateKbps: Joi
-    .number(),
+    .number()
+    .allow(null),
 
   username: Joi
-    .string(),
+    .string()
+    .allow(null),
 
   credential: Joi
-    .string(),
+    .string()
+    .allow(null),
 }));
 
 const parseJsonFile = (path) => {

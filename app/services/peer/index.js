@@ -19,6 +19,22 @@ exports.get = async (id) => {
 };
 
 /**
+ * Get peer by socket ID
+ *
+ * @param  {String} socketId Socket ID
+ * @return {Peer}
+ */
+exports.getBySocketId = async (socketId) => {
+  const peer = await Peer.findOne({ socketId }).exec();
+
+  if (!peer) {
+    throw new PeerNotFound();
+  }
+
+  return peer;
+};
+
+/**
  * Create Peer
  *
  * @param {String} socketID Socket ID
@@ -55,64 +71,56 @@ exports.refresh = async (id) => {
 };
 
 /**
- * Refresh Peer by socket ID
+ * Set Peer ready status
  *
- * @param  {String} socketId Socket ID
+ * @param  {String}  id       Peer ID
+ * @param  {Boolean} isReady  Socket ready status
  */
-exports.refreshBySocketId = async (socketId) => {
-  const peer = await Peer.findOne({ socketId }).exec();
-
-  if (!peer) {
-    throw new PeerNotFound();
-  }
+exports.setReadyStatus = async (id, isReady) => {
+  const peer = await this.get(id);
 
   if (peer.isExpired) {
     throw new PeerExpired();
   }
 
-  peer.lastRefresh = new Date();
+  peer.isReady = isReady;
 
   await peer.save();
 };
 
 /**
- * Set Peer as ready by socket ID
+ * Set Peer occupied status
  *
- * @param  {String} socketId Socket ID
+ * @param  {String}  id         Peer ID
+ * @param  {Boolean} isOccupied Peer occupied status
  */
-exports.setAsReadyBySocketId = async (socketId) => {
-  const peer = await Peer.findOne({ socketId }).exec();
-
-  if (!peer) {
-    throw new PeerNotFound();
-  }
+exports.setOccupiedStatus = async (id, isOccupied) => {
+  const peer = await this.get(id);
 
   if (peer.isExpired) {
     throw new PeerExpired();
   }
 
-  peer.isReady = true;
+  peer.isOccupied = isOccupied;
 
   await peer.save();
 };
 
 /**
- * Remove Peer by socket ID
+ * Delete Peer
  *
- * @param  {String} socketId Socket ID
+ * @param  {String} id Peer ID
  */
-exports.deleteBySocketId = async (socketId) => {
-  await Peer.deleteOne({ socketId });
+exports.delete = async (id) => {
+  await Peer.findByIdAndDelete(id);
 };
 
 /**
  * Set peers occupied status to true
  *
- * @param  {...Peer} peer List of Peers
+ * @param  {String[]} peerIds List of Peer IDs
  */
-exports.occupy = async (...peers) => {
-  const peerIds = peers.map((peer) => peer._id);
-
+exports.occupyMany = async (peerIds) => {
   const query = {
     _id: {
       $in: peerIds,

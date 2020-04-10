@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
 
-const { uri, host, port, username, password, db } = require('@config/mongodb');
+const {
+  uri,
+  host,
+  port,
+  username,
+  password,
+  db,
+} = require('@config/mongodb');
 
 let connectionUri = uri;
 

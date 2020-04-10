@@ -63,10 +63,12 @@ const pairMatches = async (server, matches) => {
       return;
     }
 
-    firstSocket.publish('/ws/peer/match', secondPeer._id);
-    secondSocket.publish('/ws/peer/match', firstPeer._id);
+    const [firstPeerId, secondPeerId] = [firstPeer._id, secondPeer._id];
 
-    peerService.occupy(firstPeer, secondPeer);
+    firstSocket.publish('/ws/peer/match', secondPeerId);
+    secondSocket.publish('/ws/peer/match', firstPeerId);
+
+    peerService.occupyMany([firstPeerId, secondPeerId]);
   });
 };
 

@@ -8,7 +8,9 @@ const { PeerNotFound, PeerExpired } = require('@services/peer/errors');
  */
 module.exports = async (socket) => {
   try {
-    await peerService.refreshBySocketId(socket.id);
+    const { id } = await peerService.getBySocketId(socket.id);
+
+    await peerService.refresh(id);
   } catch (error) {
     if (error instanceof PeerNotFound
         || error instanceof PeerExpired) {

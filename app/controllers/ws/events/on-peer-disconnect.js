@@ -10,7 +10,8 @@ module.exports = async (socket) => {
   try {
     const { id } = await peerService.getBySocketId(socket.id);
 
-    await peerService.setReadyStatus(id, true);
+    peerService.setReadyStatus(id, false);
+    peerService.setOccupiedStatus(id, false);
   } catch (error) {
     if (error instanceof PeerNotFound
         || error instanceof PeerExpired) {

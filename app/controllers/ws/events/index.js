@@ -1,10 +1,12 @@
 const peerService = require('@services/peer');
 const onPresenceHandler = require('@controllers/ws/events/on-presence');
 const onReadyHandler = require('@controllers/ws/events/on-ready');
+const onPeerDisconnect = require('@controllers/ws/events/on-peer-disconnect');
 
 const messageEventMap = {
   presence: onPresenceHandler,
   ready: onReadyHandler,
+  peerDisconnect: onPeerDisconnect,
 };
 
 /**
@@ -24,7 +26,9 @@ exports.onConnection = async (socket) => {
  * @param  {Socket} socket
  */
 exports.onDisconnection = async (socket) => {
-  await peerService.deleteBySocketId(socket.id);
+  const { id } = await peerService.getBySocketId(socket.id);
+
+  await peerService.delete(id);
 };
 
 /**

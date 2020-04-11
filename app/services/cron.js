@@ -1,6 +1,6 @@
 const cron = require('node-cron');
 const findMatches = require('@tasks/find-matches');
-const importTwilioNts = require('@tasks/import-twilio-nts');
+const importXirsysIce = require('@tasks/import-xirsys-ice');
 
 exports.run = (server) => {
   cron.schedule('*/1 * * * * *', () => {
@@ -8,6 +8,6 @@ exports.run = (server) => {
   });
 
   cron.schedule('0 */12 * * *', () => {
-    importTwilioNts(server);
+    importXirsysIce();
   });
 };

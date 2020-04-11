@@ -7,24 +7,9 @@ const Joi = require('@hapi/joi');
 const bootstrap = require('../bootstrap');
 const logger = require('@services/logger');
 const iceServerService = require('@services/ice-server');
+const iceServerSchema = require('@services/ice-server/schema');
 
-const schema = Joi.array().items(Joi.object({
-  url: Joi
-    .string()
-    .required(),
-
-  maxRateKbps: Joi
-    .number()
-    .allow(null),
-
-  username: Joi
-    .string()
-    .allow(null),
-
-  credential: Joi
-    .string()
-    .allow(null),
-}));
+const schema = Joi.array().items(iceServerSchema);
 
 const parseJsonFile = (path) => {
   const fileContents = fs.readFileSync(path, 'utf8');

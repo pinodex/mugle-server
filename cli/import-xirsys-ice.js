@@ -1,8 +1,8 @@
 const bootstrap = require('../bootstrap');
-const importTwilioNtsIce = require('@tasks/import-twilio-nts-ice');
+const importXirsysIce = require('@tasks/import-xirsys-ice');
 
 bootstrap().then(async () => {
-  await importTwilioNtsIce();
+  await importXirsysIce();
 
   process.exit(0);
 });

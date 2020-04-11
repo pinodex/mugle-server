@@ -14,7 +14,7 @@ module.exports = async () => {
     token = await client.tokens.create();
   } catch (err) {
     logger.error('An error occurred while creating Twilio NTS token');
-    logger.error(err);
+    logger.error(err.message);
 
     return;
   }

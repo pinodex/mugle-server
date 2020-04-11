@@ -4,6 +4,11 @@ const hidden = require('mongoose-hidden')();
 const definition = {
   url: String,
 
+  urls: {
+    type: [String],
+    default: () => null,
+  },
+
   maxRateKbps: {
     type: Number,
     default: () => null,

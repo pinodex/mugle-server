@@ -4,7 +4,7 @@ const parseArgs = require('minimist');
 const Bourne = require('@hapi/bourne');
 const Joi = require('@hapi/joi');
 
-const bootstrap = require('./bootstrap');
+const bootstrap = require('../bootstrap');
 const logger = require('@services/logger');
 const iceServerService = require('@services/ice-server');
 

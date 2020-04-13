@@ -8,10 +8,10 @@ const routes = require('@routes');
 
 const validateFailAction = require('@helpers/validate-fail-action');
 
-const cron = require('@services/cron');
-
 const wsEvents = require('@controllers/ws/events');
 const wsSubscriptions = require('@controllers/ws/subscriptions');
+
+const logger = require('@services/logger');
 
 const server = Hapi.server({
   port,
@@ -56,7 +56,7 @@ exports.start = async () => {
 
   await server.start();
 
-  cron.run(server);
+  logger.info(`Server running on ${server.info.uri}`);
 
-  process.stdout.write(`Server running on ${server.info.uri}\n`);
+  return server;
 };

@@ -19,6 +19,16 @@ eslint:
     - master
     - merge_requests
 
+test:
+  stage: test
+  before_script:
+    - npm install
+  script:
+    - npm run test
+  only:
+    - master
+    - merge_requests
+
 build-docker-image:
   stage: build
   image:

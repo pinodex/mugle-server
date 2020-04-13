@@ -5,7 +5,14 @@ const { expect } = require('@hapi/code');
 const { init: loggerInit } = require('@services/logger');
 const { start } = require('../server');
 
-const { afterEach, beforeEach, describe, it } = exports.lab = Lab.script();
+exports.lab = Lab.script();
+
+const {
+  afterEach,
+  beforeEach,
+  describe,
+  it,
+} = exports.lab;
 
 loggerInit();
 
@@ -22,8 +29,8 @@ describe('GET /', () => {
 
   it('responds with 404', async () => {
     const res = await server.inject({
-        method: 'get',
-        url: '/'
+      method: 'get',
+      url: '/',
     });
 
     expect(res.statusCode).to.equal(404);

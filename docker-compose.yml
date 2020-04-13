@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  mugle:
+    build:
+      context: .
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - MONGODB_URI=${MONGODB_URI:-mongodb://mongo:27017/mugle}
+      - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID:-test}
+      - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN:-test}
+    expose:
+      - 3000
+
+  mongo:
+    image: mongo:3.6-xenial

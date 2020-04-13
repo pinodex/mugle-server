@@ -3,9 +3,9 @@ const logger = require('@services/logger');
 const iceService = require('@services/ice-server');
 const { accountSid, authToken } = require('@config/twilio');
 
-const client = twilio(accountSid, authToken);
-
 module.exports = async () => {
+  const client = twilio(accountSid, authToken);
+
   let token = null;
 
   logger.info('Creating Twilio NTS token');

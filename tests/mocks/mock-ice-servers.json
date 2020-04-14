@@ -1,0 +1,27 @@
+[
+  {
+    "url": "127.0.0.1"
+  },
+  {
+    "urls": [
+      "127.0.0.1",
+      "127.0.0.2",
+      "127.0.0.3"
+    ]
+  },
+  {
+    "url": "127.0.0.1",
+    "maxRateKbps": 5000
+  },
+  {
+    "url": "127.0.0.1",
+    "username": "test",
+    "credential": "test"
+  },
+  {
+    "url": "127.0.0.1",
+    "maxRateKbps": 6000,
+    "username": "test",
+    "credential": "test"
+  }
+]

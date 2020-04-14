@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "lint": "eslint .",
-    "test": "lab -v tests"
+    "test": "lab -v"
   },
   "author": "",
   "license": "MIT",
@@ -36,6 +36,7 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.1",
+    "mongodb-memory-server": "^6.5.2",
     "nodemon": "^2.0.2"
   }
 }

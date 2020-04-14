@@ -15,7 +15,7 @@ exports.all = async () => {
  * Create many ice servers
  *
  * @param  {Array} data Array of ice server objects
- * @return {Array}
+ * @return {Array}      Array of created ICE servers
  */
 exports.createMany = async (data) => {
   const result = await IceServer.create(data);

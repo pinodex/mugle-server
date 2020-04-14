@@ -2,7 +2,10 @@ const { Schema, model } = require('mongoose');
 const hidden = require('mongoose-hidden')();
 
 const definition = {
-  url: String,
+  url: {
+    type: String,
+    default: () => null,
+  },
 
   urls: {
     type: [String],

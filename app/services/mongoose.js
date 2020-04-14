@@ -17,10 +17,17 @@ if (!connectionUri) {
     : `mongodb://${host}:${port}/${db}`;
 }
 
-exports.connect = () => mongoose.connect(connectionUri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+exports.connect = (connectionUriOverride = null, optionsOverride = {}) => {
+  const uriToUse = connectionUriOverride || connectionUri;
+
+  const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    ...optionsOverride,
+  };
+
+  return mongoose.connect(uriToUse, options);
+};
 
 exports.mongoose = mongoose;

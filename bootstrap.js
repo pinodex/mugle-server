@@ -13,18 +13,18 @@ moduleAlias.addAliases({
   '@routes': path.join(__dirname, 'app', 'routes'),
   '@services': path.join(__dirname, 'app', 'services'),
   '@tasks': path.join(__dirname, 'app', 'tasks'),
+  '@tests': path.join(__dirname, 'tests'),
 });
 
 const { connect: mongooseConnect } = require('@services/mongoose');
 const { init: loggerInit } = require('@services/logger');
 
-module.exports = async () => {
-  const logger = loggerInit();
+const logger = loggerInit();
 
+module.exports = async () => {
   const mongoose = await mongooseConnect();
 
   return {
-    logger,
     mongoose,
   };
 };

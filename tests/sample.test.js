@@ -2,31 +2,28 @@ require('../bootstrap');
 
 const Lab = require('@hapi/lab');
 const { expect } = require('@hapi/code');
-const { init: loggerInit } = require('@services/logger');
 const { start } = require('../server');
 
 exports.lab = Lab.script();
 
 const {
-  afterEach,
-  beforeEach,
+  after,
+  before,
   describe,
   it,
 } = exports.lab;
 
-loggerInit();
+let server = null;
+
+before(async () => {
+  server = await start();
+});
+
+after(async () => {
+  await server.stop();
+});
 
 describe('GET /', () => {
-  let server = null;
-
-  beforeEach(async () => {
-    server = await start();
-  });
-
-  afterEach(async () => {
-    await server.stop();
-  });
-
   it('responds with 404', async () => {
     const res = await server.inject({
       method: 'get',

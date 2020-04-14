@@ -24,13 +24,12 @@ after(async () => {
 });
 
 describe('ICE Server Service', () => {
-
   it('creates many ICE servers', async () => {
     const result = await iceServerService.createMany(mockIceServers);
 
     expect(result).to.be.an.array();
 
-    expect(result.length).to.equal(mockIceServers.length);
+    expect(result).to.have.length(mockIceServers.length);
   });
 
   it('returns all ICE servers', async () => {
@@ -40,8 +39,8 @@ describe('ICE Server Service', () => {
 
     expect(result.length).to.equal(mockIceServers.length);
 
-    for (const entry of result) {
-      const keys = Object.keys(entry.toObject());
+    result.forEach((item) => {
+      const keys = Object.keys(item.toObject());
 
       expect(keys).to.equal([
         'url',
@@ -50,7 +49,7 @@ describe('ICE Server Service', () => {
         'username',
         'credential',
       ]);
-    }
+    });
   });
 
   it('deletes all ICE servers', async () => {
@@ -62,5 +61,4 @@ describe('ICE Server Service', () => {
 
     expect(result).to.be.an.empty();
   });
-
 });

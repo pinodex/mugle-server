@@ -35,7 +35,7 @@ class Peer {
   get isExpired() {
     const diffMs = new Date() - this.lastRefresh;
 
-    return (diffMs / 1000) > PEER_LIFETIME_SECONDS;
+    return diffMs > PEER_LIFETIME_SECONDS;
   }
 }
 

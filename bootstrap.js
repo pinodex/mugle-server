@@ -19,7 +19,7 @@ moduleAlias.addAliases({
 const { connect: mongooseConnect } = require('@services/mongoose');
 const { init: loggerInit } = require('@services/logger');
 
-const logger = loggerInit();
+loggerInit();
 
 module.exports = async () => {
   const mongoose = await mongooseConnect();

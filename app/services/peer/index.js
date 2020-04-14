@@ -46,7 +46,7 @@ exports.create = async (socketId) => {
     lastRefresh: new Date(),
   });
 
-  return peer._id;
+  return peer.id;
 };
 
 /**
@@ -140,7 +140,7 @@ exports.occupyMany = async (peerIds) => {
  * @return {Peer}
  */
 exports.findForPairing = async () => {
-  const lifetimeThreshold = new Date(new Date() - PEER_LIFETIME_SECONDS);
+  const lifetimeThreshold = new Date(new Date().getTime() - PEER_LIFETIME_SECONDS);
 
   const peers = await Peer.find({
     isOccupied: false,

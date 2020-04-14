@@ -7,7 +7,11 @@ image: node:12.16-stretch-slim
 cache:
   key: dependencies
   paths:
+    - .npm/
     - node_modules/
+
+before_script:
+  - npm ci --cache .npm --prefer-offline
 
 eslint:
   stage: test

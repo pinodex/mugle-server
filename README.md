@@ -21,3 +21,7 @@
 #### Linting
 
 Run eslint with `npm run lint`
+
+#### Testing
+
+Run tests with `npm run test`

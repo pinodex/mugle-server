@@ -11,6 +11,9 @@
   },
   "author": "",
   "license": "MIT",
+  "engines": {
+    "node": "12.16.x"
+  },
   "dependencies": {
     "@hapi/boom": "^9.1.0",
     "@hapi/bourne": "^2.0.0",
